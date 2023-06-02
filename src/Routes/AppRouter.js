@@ -7,14 +7,15 @@ const AppRouter = () => {
   return (
     <div>
       <BrowserRouter>
-        {/* <Routes>
-          <Route path={"/"} element={<Layout />}>
-            <Route index element={<Home />} />
+        <Routes>
+          {/* <Route path={"/"} element={<Layout />}> */}
+          <Route path={"/"} element={<Home />}>
+            {/* <Route index element={<Home />} /> */}
                 <Route path="crew" element={<Crew />} />
                 <Route path="destination" element={<Destination />} />
                 <Route path="technology" element={<Technology />} />
           </Route>
-        </Routes> */}
+        </Routes>
       </BrowserRouter>
     </div>
   );

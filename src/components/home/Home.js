@@ -1,13 +1,16 @@
 import React from "react";
-
+import logo from "../../assets/img/logo.png"
 const Home = () => {
     return (
         <div className="homepage">
+            <figure>
+                <img src={logo} alt="logo pizza" />
+            </figure>
             <article className="home-text">
                 <span id="heading">So, You want to travel to</span>
                 <h1>Space</h1>
                 <p>
-lorem ipsum 
+                    lorem ipsum
                 </p>
             </article>
             <figure className='backgroundHome'>
