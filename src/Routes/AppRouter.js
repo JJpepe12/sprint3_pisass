@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "../components/layout/Layout";
+import Home from "../pages/home/Home";
+import Login from "../pages/login/Login";
 
 
 const AppRouter = () => {
@@ -8,12 +11,9 @@ const AppRouter = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          {/* <Route path={"/"} element={<Layout />}> */}
-          <Route path={"/"} element={<Home />}>
-            {/* <Route index element={<Home />} /> */}
-                <Route path="crew" element={<Crew />} />
-                <Route path="destination" element={<Destination />} />
-                <Route path="technology" element={<Technology />} />
+          <Route path={"/"} element={<Layout />}>
+            <Route index element={<Home />} />
+                <Route path="login" element={<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
