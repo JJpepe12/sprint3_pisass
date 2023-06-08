@@ -7,7 +7,7 @@ const Home = () => {
                 <span id="heading">So, You want to travel to</span>
                 <h1>Space</h1>
                 <p>
-lorem ipsum 
+                lorem ipsum 
                 </p>
             </article>
             <figure className='backgroundHome'>
