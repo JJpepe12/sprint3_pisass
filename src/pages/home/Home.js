@@ -3,7 +3,7 @@ import React from "react";
 const Home = () => {
     return (
         <div className="homepage">
-            <article className="home-text">
+            {/* <article className="home-text">
                 <span id="heading">So, You want to travel to</span>
                 <h1>Space</h1>
                 <p>
@@ -15,7 +15,7 @@ const Home = () => {
             </figure>
             <button className="explore-btn">
                 Explore
-            </button>
+            </button> */}
         </div>
     );
 };
