@@ -1,6 +1,5 @@
 import { Box, ChakraProvider, Flex, Image, Stack, } from '@chakra-ui/react';
 import React, { useState } from 'react';
-
 import Book from '../../assets/icons/book.svg';
 import Search from '../../assets/icons/search.svg';
 // import Car from  '../../assets/icons/cart-basket.svg';
