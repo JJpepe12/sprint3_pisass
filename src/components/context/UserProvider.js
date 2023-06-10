@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
     //   Hook de effecto para traer la info del usuario 
     useEffect(() => {
     getUsers();
-    })
+    } , [])
 
   return (
     <UserContext.Provider value={userData}>

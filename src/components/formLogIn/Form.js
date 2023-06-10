@@ -7,6 +7,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { UnlockIcon } from '@chakra-ui/icons'
 // import { UserContext } from "../../Routes/AppRouter"
 // import { get } from "../../services/usuarioService";
+import Swal from "sweetalert2";
 import {
     FormControl,
     FormLabel,
@@ -28,7 +29,7 @@ import { UserContext } from "../context/UserProvider"
 
 const validationSchema = Yup.object().shape({
     username: Yup.string()
-        .min(3, 'El nombre de usuario debe tener al menos 3 caracteres')
+        .min(2, 'El nombre de usuario debe tener al menos 3 caracteres')
         .max(15, 'El nombre de usuario no debe tener más de 15 caracteres')
         .required('El nombre de usuario es obligatorio'),
     password: Yup.string()
@@ -40,7 +41,8 @@ const initialValues = {
     password: '',
 };
 // const Form = ({ username, password, handleUser }) => {
-    const Form = ({  handleUser }) => {
+    // const Form = ({  handleUser }) => {
+ const Form = ({ }) => {
    
 
     // const {  usernamec, setUsernamec, passwordc, setpassword} = useContext(UserContext); 
@@ -86,9 +88,9 @@ const initialValues = {
     //   });
     
       // Hook de navegación para direccionar al home del usuario 
-      const navigateR = useNavigate();
+      const navigate = useNavigate();
       const goHome = () => {
-          navigateR("home")
+          navigate("/home")
       }
     
     //   const [users, handleUsers] = useState([]);
@@ -106,6 +108,7 @@ const initialValues = {
     //     setUsernamec(event.target.value);
     //   };
     const userData = useContext(UserContext);
+    console.log(userData);
     const formik = useFormik({
         initialValues,
         validationSchema,
@@ -117,15 +120,29 @@ const initialValues = {
               user.password === values.password
           );
           if (foundUser) {
-            handleUser(values);
-            console.log(values);
+            // handleUser(values);
+            console.log("La información es válida");
             console.log("valores", values);
+            Swal.fire(
+                'excelente',
+                `${foundUser.name} Bienvenido!!`,
+                'success'
+            )
+            // sessionStorage.setItem('idVuelo', JSON.stringify(resultado));
+            navigate("Home")
+
           } else {
             console.log("La información ingresada no es válida");
             console.log("valores", values);
+            Swal.fire(
+                'upps',
+                'Usuario no encontrado, intenta de nuevo!',
+                'error'
+            )
           }
           setSubmitting(false);
         },
+        enableReinitialize: true
       });
 
  
@@ -134,24 +151,24 @@ const initialValues = {
             <form  onSubmit={formik.handleSubmit} position="absolute">
                 <Flex overflow="wrap" flexWrap="wrap" alignContent="start" flexDirection="column" spacing={10}>
                     <FormControl >
-                        <FormLabel  size='xs' widht="90%" color={'white'}>Disfruta de la mejor pizza creada para las personas amantes del código </FormLabel>
+                        <FormLabel widht="90%" color={'white'} fontSize={"small"}>Disfruta de la mejor pizza creada para las personas amantes del código </FormLabel>
                     </FormControl>
                     <div>
                         <Stack spacing={4} alignItems="center">
                             <InputGroup display="flex" alignItems="center" >
-                                <Input  display="flex" alignItems="center" variant='flushed'  type="text" name="username" color="white"  placeholder='Usuario' _placeholder={{ opacity: 1, color: 'white' }}{...formik.getFieldProps('username')}  onChange={formik.handleChange} value={formik.values.username}/>
-                                <FormErrorMessage>{formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}</FormErrorMessage>
-                                <InputLeftElement className="Input_Img" >
-                                    <AiOutlineUser  margin-bottom="-15px" color="white"/>
+                                <Input  display="flex" alignItems="center" variant='flushed'  type="text" name="username" color="white"  placeholder='Usuario' _placeholder={{ opacity: 1, color: 'white', fontSize:"small" }}{...formik.getFieldProps('username')}  onChange={formik.handleChange} value={formik.values.username}/>
+                                <FormErrorMessage position="absolute">{formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}</FormErrorMessage>
+                                <InputLeftElement className="Input_Img" top= "7px" >
+                                    <AiOutlineUser color="white"/>
                                 </InputLeftElement>
                                 
                             </InputGroup>
                             <InputGroup display="flex" alignItems="center">
-                                <InputLeftElement pointerEvents='none'>
+                                <InputLeftElement pointerEvents='none' top= "7px">
                                     <UnlockIcon  color="white" />
                                 </InputLeftElement>
-                                <Input  display="flex" alignItems="center" variant='flushed'  type="password" name="password" color="white"placeholder="Contraseña" _placeholder={{ opacity: 1, color: 'white' }}{...formik.getFieldProps('password')}/>
-                                <FormErrorMessage>{formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}</FormErrorMessage>
+                                <Input  display="flex" alignItems="center" variant='flushed'  type="password" name="password" color="white"placeholder="Contraseña" _placeholder={{ opacity: 1, color: 'white', fontSize:"small" }}{...formik.getFieldProps('password')}/>
+                                <FormErrorMessage position="absolute">{formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}</FormErrorMessage>
                             </InputGroup>
                         </Stack>
                         <Button  width='90%' size='lg' mt={7} colorScheme='gray' variant='solid' type="submit" disabled={formik.isSubmitting}>

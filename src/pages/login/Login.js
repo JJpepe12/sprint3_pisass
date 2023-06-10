@@ -6,8 +6,9 @@ import Form from "../../components/formLogIn/Form";
 import pizzaBackground from "../../assets/img/pizza_backgroud.jpeg"
 // import { Formulario } from "../../components/formLogIn/formPrueba";
 
-const Login = ({ handleUser }) => {
+// const Login = ({ handleUser }) => {
     // const Login = () => {
+        const Login = ({ }) => {
 
     return (
         <PizzaHome>
@@ -16,8 +17,8 @@ const Login = ({ handleUser }) => {
             </figure>
             <section>
                 <h2> Inicia sesión en tu cuenta </h2>
-                <Form handleUser={handleUser} />
-                {/* <Formulario/> */}
+                {/* <Form handleUser={handleUser} /> */}
+            <Form />
                 <h3> Restablecer contraseña </h3>
                 <div>
                 <h5>¿No tienes una cuenta?</h5>
