@@ -1,14 +1,12 @@
-import React from 'react'
-import PizzasDisponoibles from '../../components/pizzasDisponible/PizzasDisponoibles'
+import React from "react";
+import PizzasDisponibles from "../../components/pizzasDisponible/PizzasDisponibles";
 
 const Home = () => {
     return (
         <div>
-         
-           <PizzasDisponoibles/>
-
+        <PizzasDisponibles />
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
