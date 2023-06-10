@@ -1,5 +1,5 @@
 import React from 'react'
-import PizzasDisponoibles from '../../pizzasDisponible/PizzasDisponoibles'
+import PizzasDisponoibles from '../../components/pizzasDisponible/PizzasDisponoibles'
 
 const Home = () => {
     return (

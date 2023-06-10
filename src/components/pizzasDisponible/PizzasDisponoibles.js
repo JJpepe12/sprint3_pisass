@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import InfoUsuario from '../infousuario/InfoUsuario';
-import { Button, Card, CardBody, Divider, Image, Stack, Text, Box } from '@chakra-ui/react';
+import {  Card,  Stack,  Box } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ticketImage from '../../assets/img/ticket..png';
-import Pizza1 from '../../assets/img/pizza_ajo.jpg';
+// import Pizza1 from '../../assets/img/pizza_ajo.jpg';
 import Footer from '../footer/Footer';
+import  { get } from '../services/usuarioService'
+import ShowCards from "../showCards/ShowCards";
+
 
 const promociones = [
   {
@@ -40,8 +43,19 @@ const PizzasDisponibles = () => {
     slidesToScroll: 1,
   };
 
+  // Hook de effecto para traer la info de la pizzas
+  const [products, handleProducts] = useState([]);
+  const getProducts = async() => {
+    const getproducts = await get('products');
+    handleProducts(getproducts);
+}
+useEffect(() => {
+    getProducts();
+    // console.log(products);
+})
+
   return (
-    <>
+   
      <Box  bg="rgba(255, 192, 203, 0.2)">
       <InfoUsuario />
       <Stack direction='row' padding='35' justify='space-between '>
@@ -62,70 +76,15 @@ const PizzasDisponibles = () => {
           </div>
         ))}
       </Slider>
-
-      <Card maxW='sm' bottom="-25px" padding="30">
-        <CardBody>
-          <Box position="relative">
-            <Image
-              src={Pizza1}
-              alt='Pizza de ajo'
-              borderRadius='10px'
-            />
-            <Box
-              position="absolute"
-              bottom="0"
-              left="0"
-              right="0"
-              top="0"
-              bg="linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))"
-              borderRadius="10px"
-            />
-           <Stack direction="row" position="absolute"
-            top="100px" gap="3.5rem" padding="40px" >
-              <Text fontWeight='bold'  color='white'>
-                Master CSS Pizza
-              </Text>
-              <Button borderRadius='18px' backgroundColor='#FF2153' w='88px' h='35px' fontWeight='bold'  color='white'>
-                $50.000
-              </Button>
-            </Stack>
-          </Box>
-        </CardBody>
-      </Card>
-
-      <Card maxW='sm' padding="30">
-        <CardBody>
-          <Box position="relative">
-            <Image
-              src={Pizza1}
-              alt='Pizza de ajo'
-              borderRadius='10px'
-            />
-            <Box
-              position="absolute"
-              bottom="0"
-              left="0"
-              right="0"
-              top="0"
-              bg="linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))"
-              borderRadius="10px"
-            />
-           <Stack direction="row" position="absolute"
-            top="100px" gap="3.5rem" padding="40px" >
-              <Text fontWeight='bold'  color='white'>
-                Master CSS Pizza
-              </Text>
-              <Button borderRadius='18px' backgroundColor='#FF2153' w='88px' h='35px' fontWeight='bold'  color='white'>
-                $50.000
-              </Button>
-            </Stack>
-          </Box>
-        </CardBody>
-      </Card>
-      <Footer/>
+      <Card>
+    
+            {products.map((product) => (
+              <ShowCards key={product.id} product={product}>
+              </ShowCards>
+            ))}
+          
+      </Card> <Footer/>
       </Box>
-
-    </>
   );
 };
 

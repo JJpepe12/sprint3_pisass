@@ -1,4 +1,4 @@
-import { Box, ChakraProvider, Flex, Image, Stack, } from '@chakra-ui/react';
+import { Box,  Flex, Image, Stack, } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 import Book from '../../assets/icons/book.svg';
@@ -23,8 +23,8 @@ const Footer = () => {
 
     return (
 
-        <ChakraProvider>
-        <Box width="100%" height="70px"  >
+        
+        <Box width="100%" height="70px" marginTop="20px" >
 
             <Image src={FooterFondo} alt="FooterFondo" width="100%" height="70px"
             />
@@ -49,7 +49,7 @@ const Footer = () => {
       </Stack>
             </Flex>
         </Box>
-        </ChakraProvider>
+       
     );
 };
 
