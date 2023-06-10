@@ -50,7 +50,8 @@ background-image: url(${backgrount});
 background-size: cover;
 /* filter: brightness(0.5);
 background-blend-mode: difference; */
-filter: saturate(0.5);
+/* filter: saturate(0.5); */
+filter:brightness(.4) ;
 }
 `;
  
