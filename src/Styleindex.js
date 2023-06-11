@@ -29,7 +29,7 @@ a{
 }
 
 
-/* Body */
+
 body{
     background-color: #fadce7;
 }

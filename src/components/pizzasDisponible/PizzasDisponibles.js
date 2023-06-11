@@ -32,7 +32,11 @@ const promociones = [
   },
 ];
 
+
+
 const PizzasDisponibles = () => {
+
+  
   const settings = {
     dots: true,
     infinite: true,
@@ -56,14 +60,14 @@ useEffect(() => {
 
   return (
    
-     <Box  bg="rgba(255, 192, 203, 0.2)">
+     <Box>
       <InfoUsuario />
-      <Stack direction='row' padding='35' justify='space-between '>
+      <Stack direction='row' padding='35px' justify='space-between '>
         <h2 style={{fontWeight: "bold" , fontSize: "18px"}}>Pizzas Disponibles</h2>
         <h3 style={{ color: "#FF2153", fontWeight: "bold" }} >Ver todas</h3>
       </Stack>
 
-      <Slider padding='30' {...settings}>
+      <Slider padding='30px' {...settings}>
         {promociones.map((promocion) => (
           <div key={promocion.id}>
             <div style={{ position: 'relative',display: 'flex', justifyContent: 'center' }}>

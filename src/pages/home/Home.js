@@ -3,9 +3,7 @@ import PizzasDisponibles from "../../components/pizzasDisponible/PizzasDisponibl
 
 const Home = () => {
     return (
-        <div>
         <PizzasDisponibles />
-        </div>
     );
 };
 

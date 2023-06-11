@@ -19,13 +19,13 @@ const Footer = () => {
 
   return (
     <ChakraProvider>
-      <Box width="100%" height="70px">
-        <Image src={FooterFondo} alt="FooterFondo" width="100%" height="70px" />
+      <Box width="100%" height="70px" marginTop="20px">
+        <Image src={FooterFondo} alt="FooterFondo" width="100%"  />
         <Flex
           alignItems="center"
           justifyContent="space-between"
           position="relative"
-          top="-73"
+          top="-110"
           padding="22px"
           paddingTop="2px"
         >
@@ -61,7 +61,7 @@ const Footer = () => {
             h={75}
             borderRadius="50%"
             bg="white"
-            top="-70"
+            top="-53"
             boxShadow="0px 9px 5px rgba(0, 0, 0, 0.2)"
           >
             <Box
