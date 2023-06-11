@@ -2,19 +2,23 @@ import { Box, ChakraProvider, Flex, Image, Stack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Book from "../../assets/icons/book.svg";
 import Search from "../../assets/icons/search.svg";
-// import Car from  '../../assets/icons/cart-basket.svg';
 import FooterFondo from "../../assets/img/footer.png";
 import { RiShoppingBasket2Line } from "react-icons/ri";
+import { useLocation, useNavigate } from "react-router";
 
 const Footer = () => {
   const [activePage, setActivePage] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearchClick = () => {
     setActivePage("buscar");
+    navigate("/search")
   };
 
   const handleBookClick = () => {
     setActivePage("home");
+    navigate ("/home")
   };
 
   return (
@@ -41,14 +45,16 @@ const Footer = () => {
               boxSize={21}
               maxW={20}
               style={{
-                filter: activePage === "home" ? "brightness(0.8)" : "none",
-                color: activePage === "home" ? "#FF2153" : "gray",
+                filter: location.pathname === "/home" ? "brightness(0.8)" : "none",
+                fill: location.pathname === "/home" ? "#FF2153" : "gray",
               }}
             />
             <h3
               style={{
                 color: activePage === "home" ? "#FF2153" : "gray",
                 fontWeight: "bold",
+                color:
+                location.pathname === "/home" ? "#FF2153" : "gray",
               }}
             >
               Home
@@ -89,14 +95,16 @@ const Footer = () => {
               boxSize={24}
               maxW={21}
               style={{
-                filter: activePage === "buscar" ? "brightness(0.8)" : "none",
-                color: activePage === "buscar" ? "#FF2153" : "gray",
+                filter: location.pathname === "/home" ? "brightness(0.8)" : "none",
+                fill: location.pathname === "/home" ? "#FF2153" : "gray",
               }}
             />
             <h3
               style={{
                 color: activePage === "buscar" ? "#FF2153" : "gray",
                 fontWeight: "bold",
+                color:
+                location.pathname === "/search" ? "#FF2153" : "gray",
               }}
             >
               Buscar

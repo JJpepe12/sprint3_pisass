@@ -45,47 +45,7 @@ const initialValues = {
  const Form = ({ }) => {
    
 
-    // const {  usernamec, setUsernamec, passwordc, setpassword} = useContext(UserContext); 
-    // const formik = useFormik({
-    //     initialValues,
-    //     validationSchema,
-    //     onSubmit: (values) => {
-    //         handleUser(values);
-    //         console.log(values);
-    //     },
-    //     // enableReinitialize: true
-    // })
-
-    // const formik = useFormik({
-    //     initialValues,
-    //     validationSchema,
-    //     onSubmit: (values, { setSubmitting }) => {
-    //       console.log("valores", values);
-    //       setTimeout(() => {
-    //         setSubmitting(false);
-    //       }, 400);
-    //     },
-    //   });
-
-    //   const formik = useFormik({
-    //     initialValues,
-    //     validationSchema,
-    //     onSubmit: (values, { setSubmitting }) => {
-    //         console.log("valores", values);
-    //       if (
-    //         values.username === usernamec &&
-    //         values.password === passwordc 
-    //       ) {
-    //         // La información del formulario coincide con la del contexto
-    //         handleUser(values);
-    //         console.log(values);
-    //       } else {
-    //         // La información no coincide
-    //         console.log('La información ingresada no es válida');
-    //       }
-    //       setSubmitting(false);
-    //     },
-    //   });
+  
     
       // Hook de navegación para direccionar al home del usuario 
       const navigate = useNavigate();
@@ -93,20 +53,7 @@ const initialValues = {
         navigate("/home")
       }
     
-    //   const [users, handleUsers] = useState([]);
-    //   const [ password, handlePassword] = useState([]);
-    //   const getUsers = async() => {
-    //     const getusers = await get('ussers');
-    //     handleUsers(getusers);
-    // }
-    //   Hook de effecto para traer la info del usuario 
-    // useEffect(() => {
-    //     getUsers();
-        // console.log(users);
-    // })
-    // const handleChangeUser = (event) => {
-    //     setUsernamec(event.target.value);
-    //   };
+   
     const userData = useContext(UserContext);
     console.log(userData);
     const formik = useFormik({

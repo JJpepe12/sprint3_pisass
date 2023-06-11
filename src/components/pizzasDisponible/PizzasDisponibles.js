@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InfoUsuario from '../infousuario/InfoUsuario';
-import {  Card,  Stack,  Box } from '@chakra-ui/react';
+import {  Card,  Stack,  Box, GlobalStyle } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,6 +8,9 @@ import ticketImage from '../../assets/img/ticket..png';
 import Footer from '../footer/Footer';
 import  { get } from '../services/usuarioService'
 import ShowCards from "../showCards/ShowCards";
+import { ChakraProvider } from "@chakra-ui/provider";
+
+
 
 
 const promociones = [
@@ -37,7 +40,7 @@ const PizzasDisponibles = () => {
 
   
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     autoplay: true,
     speed: 500,
@@ -58,8 +61,8 @@ useEffect(() => {
 })
 
   return (
-   
-     <Box>
+    <ChakraProvider>
+      <Box backgroundColor= "#fadce7" >
       <InfoUsuario />
       <Stack direction='row' padding='35px' justify='space-between '>
         <h2 style={{fontWeight: "bold" , fontSize: "18px"}}>Pizzas Disponibles</h2>
@@ -79,15 +82,18 @@ useEffect(() => {
           </div>
         ))}
       </Slider>
-      <Card>
-    
-            {products.map((product) => (
-              <ShowCards key={product.id} product={product}>
-              </ShowCards>
-            ))}
-          
-      </Card> <Footer/>
+
+      <Slider {...settings}>
+  <Card>
+    {products.map((product) => (
+      <ShowCards key={product.id} product={product}></ShowCards>
+    ))}
+  </Card>
+</Slider>
+
+      <Footer/>
       </Box>
+      </ChakraProvider>
   );
 };
 
