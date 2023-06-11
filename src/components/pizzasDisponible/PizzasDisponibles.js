@@ -5,7 +5,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ticketImage from '../../assets/img/ticket..png';
-// import Pizza1 from '../../assets/img/pizza_ajo.jpg';
 import Footer from '../footer/Footer';
 import  { get } from '../services/usuarioService'
 import ShowCards from "../showCards/ShowCards";
