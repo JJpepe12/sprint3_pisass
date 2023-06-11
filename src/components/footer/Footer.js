@@ -19,7 +19,7 @@ const Footer = () => {
 
   return (
     <ChakraProvider>
-      <Box width="100%" height="70px">
+      <Box width="100%" height="70px" marginTop="20px">
         <Image src={FooterFondo} alt="FooterFondo" width="100%" height="70px" />
         <Flex
           alignItems="center"
