@@ -16,13 +16,13 @@ import pizzaBackground from "../../assets/img/pizza_backgroud.jpeg"
                 <img src={logo} alt="logo pizza" />
             </figure>
             <section>
-                <h2> Inicia sesión en tu cuenta </h2>
+                <h1> Inicia sesión en tu cuenta </h1>
                 {/* <Form handleUser={handleUser} /> */}
             <Form />
-                <h3> Restablecer contraseña </h3>
+                <h2> Restablecer contraseña </h2>
                 <div>
                 <h5>¿No tienes una cuenta?</h5>
-                <h3> Regístrate aquí</h3>
+                <h4> Regístrate aquí</h4>
                 </div>
             </section>
         </PizzaHome>

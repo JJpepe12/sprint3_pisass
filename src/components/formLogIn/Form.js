@@ -90,7 +90,7 @@ const initialValues = {
       // Hook de navegación para direccionar al home del usuario 
       const navigate = useNavigate();
       const goHome = () => {
-          navigate("/home")
+        navigate("/home")
       }
     
     //   const [users, handleUsers] = useState([]);
@@ -123,13 +123,16 @@ const initialValues = {
             // handleUser(values);
             console.log("La información es válida");
             console.log("valores", values);
+            sessionStorage.setItem('infoUsuario', JSON.stringify(foundUser));
             Swal.fire(
                 'excelente',
                 `${foundUser.name} Bienvenido!!`,
                 'success'
+                
             )
             // sessionStorage.setItem('idVuelo', JSON.stringify(resultado));
-            navigate("Home")
+            // navigate("Home")
+            navigate("/home")
 
           } else {
             console.log("La información ingresada no es válida");

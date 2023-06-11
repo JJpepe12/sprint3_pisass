@@ -1,23 +1,15 @@
-import React from "react";
+import React from 'react'
+import InfoUsuario from '../../components/infousuario/InfoUsuario'
+// import PizzasDisponoibles from '../../components/pizzasDisponible/PizzasDisponoibles'
 
 const Home = () => {
     return (
-        <div className="homepage">
-            {/* <article className="home-text">
-                <span id="heading">So, You want to travel to</span>
-                <h1>Space</h1>
-                <p>
-                lorem ipsum 
-                </p>
-            </article>
-            <figure className='backgroundHome'>
-                <img src={BackgroundHome} alt='BackgroundHome' />
-            </figure>
-            <button className="explore-btn">
-                Explore
-            </button> */}
+        <div>
+         <InfoUsuario/>
+           {/* <PizzasDisponoibles/> */}
+        <h2> hola </h2>
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
