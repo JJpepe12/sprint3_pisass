@@ -1,22 +1,35 @@
-import React from "react";
+import React, {createContext, useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Search from "../pages/search/Search";
 import Layout from "../components/layout/Layout";
 import Home from "../pages/home/Home";
+import Login from "../pages/login/Login";
+import {UserProvider} from "../components/context/UserProvider"
 
-
+// export const UserContext = createContext({});
 const AppRouter = () => {
+  // const [usernamec, setUsernamec] = useState("");
+  // const [passwordc, setpassword] = useState("");
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+    {/* <UserContext.Provider value={{ 
+      usernamec,
+      setUsernamec,
+      passwordc,
+       setpassword
+       }}> */}
+       <UserProvider>
         <Routes>
           <Route path={"/"} element={<Layout />}>
-            <Route index element={<Home />} />
-              <Route path="search" element={<Search />} />
+          <Route path="login" element={<Login />} />
+            {/* <Route index element={<Home />} /> */}
+            <Route path="home" element={<Home />} />
+            <Route path="search" element={<Search />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </>
+    {/* </UserContext.Provider> */}
+    </UserProvider>
+  </BrowserRouter>
   );
 };
 

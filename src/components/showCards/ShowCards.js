@@ -2,8 +2,6 @@ import React from 'react'
 import { Button, Card, CardBody,  Image, Stack, Text, Box } from '@chakra-ui/react';
 
 const ShowCards = ({product}) => {
-
-    
     return (
         <>
                         
