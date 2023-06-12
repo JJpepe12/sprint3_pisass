@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { get } from "../../services/usuarioService"
+import { get } from "../services/usuarioServices"
 export const PizzaContext = createContext();
 
 export const PizzasProvider = ({ children }) => {
@@ -9,7 +9,7 @@ export const PizzasProvider = ({ children }) => {
     const getpizzas = await get('products');
     setPizzaData(getpizzas);
     }
-    //   Hook de effecto para traer la info del usuario 
+    //   Hook de effecto para traer la info de la pizzas 
     useEffect(() => {
         getPizzas();
     } , [])

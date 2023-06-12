@@ -5,6 +5,7 @@ import Layout from "../components/layout/Layout";
 import Home from "../pages/home/Home";
 import { UserProvider } from "../context/UserProvider";
 import Login from "../pages/login/login";
+import { PizzasProvider } from "../context/PizzasProvider";
 
 
 
@@ -12,6 +13,7 @@ const AppRouter = () => {
   return (
     <>
       <BrowserRouter>
+      <PizzasProvider>
       <UserProvider>
         <Routes>
         <Route path={"/"} element={<Layout />}>
@@ -21,6 +23,7 @@ const AppRouter = () => {
           </Route>
         </Routes>
         </UserProvider>
+        </PizzasProvider>
       </BrowserRouter>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import InfoUsuario from '../infousuario/InfoUsuario';
 import {  Card,  Stack,  Box } from '@chakra-ui/react';
 import Slider from 'react-slick';
@@ -8,7 +8,7 @@ import ticketImage from '../../assets/img/ticket..png';
 import Footer from '../footer/Footer';
 import  { get } from '../services/usuarioService'
 import ShowCards from "../showCards/ShowCards";
-
+import { PizzaContext } from "../../context/PizzasProvider";
 
 const promociones = [
   {
@@ -57,6 +57,7 @@ useEffect(() => {
     // console.log(products);
 })
 
+const pizzaData = useContext(PizzaContext);
   return (
    
      <Box>

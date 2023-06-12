@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import axios from "axios";
 import InfoUsuario from "../../components/infousuario/InfoUsuario";
 import LogoImage from "../../assets/img/logopizza.png";
@@ -14,48 +14,50 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import Footer from "../footer/Footer";
 import Swal from "sweetalert2";
+import { PizzaContext } from "../../context/PizzasProvider";
+import React, { useEffect, useState, useContext } from "react";
 
-const SearchBar = ({ getPizzas }) => {
+// const SearchBar = ({ getPizzas }) => {
+  const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [showFilter, setShowFilter] = useState(false);
 
-  const handleSearchPizzas = async (event) => {
+  const pizzaData = useContext(PizzaContext);
+  console.log(pizzaData);
+ 
+  const handleSearchPizzas =  (event) => {
     setSearchTerm(event.target.value);
-    console.log(searchTerm);
-    try {
-      const response = await axios.get("http://localhost:3000/products");
-      console.log(response.data);
-      const filterPizzas = response.data.filter((product) =>
+      setShowFilter(true);
+    };
+    console.log( searchTerm);
+
+    const filteredPizzas = pizzaData
+    ? pizzaData.filter((product) =>
         product.pizzaname.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      console.log(filterPizzas);
-      setSearchTerm(filterPizzas);
-    } catch (error) {
-      console.error("Error fetching pizzas:", error);
-    }
-  };
+      )
+    : [];
+    console.log(filteredPizzas);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  
-    if (searchTerm()) {
+    
+    const handleSubmit = (event) => {
+      event.preventDefault();
 
-      if (pizzaExists) {
-        getPizzas(`q=${searchTerm}`);
-      } else {
-        Swal.fire("Error", "La pizza ingresada no existe.", "error");
+        if (filteredPizzas.length) {
+          Swal.fire("Excelente", "Pizza encontrada", "success");
+        } else {
+          Swal.fire("Error", "La pizza ingresada no existe.", "error");
+        }
       }
-    } else {
-      Swal.fire("Error", "No has seleccionado una pizza.", "error");
-    }
-  };
-  
+
+
 
   return (
     <ChakraProvider>
       <InfoUsuario /> <br />
 
       <Stack mt="5%" spacing={4}>
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}> */}
+        <form>
           <InputGroup>
             <InputRightElement>
               <IconButton
@@ -64,6 +66,7 @@ const SearchBar = ({ getPizzas }) => {
                 mr="35px"
                 aria-label="Search database"
                 icon={<SearchIcon />}
+                onClick={handleSubmit}
               />
             </InputRightElement>
             <Input
@@ -72,7 +75,7 @@ const SearchBar = ({ getPizzas }) => {
               margin="auto"
               type="text"
               placeholder="Pepperoni"
-              value={searchTerm}
+              // value={searchTerm}
               onChange={handleSearchPizzas}
             />
           </InputGroup>
