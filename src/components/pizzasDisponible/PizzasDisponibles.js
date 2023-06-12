@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import InfoUsuario from '../infousuario/InfoUsuario';
-import {  Card,  Stack,  Box, GlobalStyle } from '@chakra-ui/react';
+import {  Card,  Stack,  Box, ChakraProvider } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -8,6 +8,7 @@ import ticketImage from '../../assets/img/ticket..png';
 import Footer from '../footer/Footer';
 import  { get } from '../services/usuarioService'
 import ShowCards from "../showCards/ShowCards";
+import { PizzaContext } from "../../context/PizzasProvider";
 
 
 const promociones = [
@@ -67,7 +68,7 @@ const pizzaData = useContext(PizzaContext);
         <h3 style={{ color: "#FF2153", fontWeight: "bold" }} >Ver todas</h3>
       </Stack>
 
-      <Slider padding='30px' {...settings}>
+      <Slider padding='30px' {...settings} >
         {promociones.map((promocion) => (
           <div key={promocion.id}>
             <div style={{ position: 'relative',display: 'flex', justifyContent: 'center' }}>
