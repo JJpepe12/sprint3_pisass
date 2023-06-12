@@ -95,7 +95,8 @@ import React, { useEffect, useState, useContext } from "react";
         <Text color="gray" fontWeight="bold">
           Busca la Pizza que más te gusta
         </Text>
-      </Stack> <br />
+      </Stack>  
+      <br />
       <Footer />
     </ChakraProvider>
   );
