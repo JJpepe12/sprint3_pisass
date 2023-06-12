@@ -9,6 +9,7 @@ import { PizzasProvider } from "../context/PizzasProvider";
 import Purchases from "../pages/purchases/Purchases";
 import Order from "../pages/order/Order";
 import { NotFound } from "../components/notFound/NotFound";
+import Details from "../pages/details/Details";
 
 
 
@@ -25,6 +26,7 @@ const AppRouter = () => {
             <Route path="search" element={<Search />} />
             <Route path="purchases" element={<Purchases />} />
             <Route path="order" element={<Order />} />
+            <Route path="details" element={<Details />} />
           </Route>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
