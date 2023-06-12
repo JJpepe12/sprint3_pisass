@@ -58,8 +58,8 @@ useEffect(() => {
 })
 
   return (
-   
-     <Box>
+  
+    <Box backgroundColor="#fadce7">
       <InfoUsuario />
       <Stack direction='row' padding='35px' justify='space-between '>
         <h2 style={{fontWeight: "bold" , fontSize: "18px"}}>Pizzas Disponibles</h2>
