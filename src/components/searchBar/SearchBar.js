@@ -11,6 +11,7 @@ import {
   Stack,
   Text,
   Card,
+  Box,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Footer from "../footer/Footer";
@@ -66,6 +67,7 @@ const SearchBar = () => {
 
   return (
     <ChakraProvider>
+      <Box backgroundColor= "#fadce7">
       <InfoUsuario /> <br />
 
       <Stack mt="5%" spacing={4}>
@@ -99,12 +101,12 @@ const SearchBar = () => {
         <Stack
           className="fondito_busqueda"
           align="center"
+          backgroundColor= "#fadce7"
           spacing={4}
-          style={{
-            marginTop: "50px",
-            marginBottom: "50%",
-            position: "relative",
-          }}
+           padding="50px"
+            height="360px"
+           position= "relative"
+          
         >
           <img
             src={LogoImage}
@@ -126,6 +128,7 @@ const SearchBar = () => {
   </Stack>
 )}
       <Footer />
+      </Box>
     </ChakraProvider>
   );
 };

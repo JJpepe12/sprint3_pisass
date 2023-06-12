@@ -88,18 +88,10 @@ const ShowCards = ({ product }) => {
                 <Text fontWeight="bold" color="white" fontSize="15px">
                   {product.pizzaname}
                 </Text>
-                {/* <Button
-                  borderRadius="18px"
-                  backgroundColor="#FF2153"
-                  w="88px"
-                  h="35px"
-                  fontWeight="bold"
-                  color="white"
-                  onClick={() => handleCardClick(product)}
-                > */}
                    <Link to ={`/details/${product.id}`}
                   borderRadius="18px"
                   backgroundColor="#FF2153"
+                  padding="8px"
                   w="88px"
                   h="35px"
                   fontWeight="bold"
@@ -107,7 +99,6 @@ const ShowCards = ({ product }) => {
                   onClick={() => handleCardClick(product)}
                 >
                   {product.price}
-                {/* </Button> */}
                 </Link>
               </Stack>
             </Box>
@@ -145,9 +136,10 @@ const ShowCards = ({ product }) => {
                 <Text fontWeight="bold" color="white" fontSize="15px">
                   {product.pizzaname}
                 </Text>
-                <Button
+                <Link to ={`/details/${product.id}`}
                   borderRadius="18px"
                   backgroundColor="#FF2153"
+                  padding="8px"
                   w="88px"
                   h="35px"
                   fontWeight="bold"
@@ -155,7 +147,7 @@ const ShowCards = ({ product }) => {
                   onClick={() => handleCardClick(product)}
                 >
                   {product.price}
-                </Button>
+                </Link>
               </Stack>
             </Box>
             </div>
@@ -193,9 +185,10 @@ const ShowCards = ({ product }) => {
                 <Text fontWeight="bold" color="white" fontSize="15px">
                   {product.pizzaname}
                 </Text>
-                <Button
+                <Link to ={`/details/${product.id}`}
                   borderRadius="18px"
                   backgroundColor="#FF2153"
+                  padding="8px"
                   w="88px"
                   h="35px"
                   fontWeight="bold"
@@ -203,7 +196,7 @@ const ShowCards = ({ product }) => {
                   onClick={() => handleCardClick(product)}
                 >
                   {product.price}
-                </Button>
+                </Link>
               </Stack>
                
               </Box>
