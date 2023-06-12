@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom'
-import { Button, Card, CardBody, Image, Stack, Text, Box } from '@chakra-ui/react';
+import { Button, Card, CardBody, Image, Stack, Text, Box, Link } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -88,7 +88,16 @@ const ShowCards = ({ product }) => {
                 <Text fontWeight="bold" color="white" fontSize="15px">
                   {product.pizzaname}
                 </Text>
-                <Button
+                {/* <Button
+                  borderRadius="18px"
+                  backgroundColor="#FF2153"
+                  w="88px"
+                  h="35px"
+                  fontWeight="bold"
+                  color="white"
+                  onClick={() => handleCardClick(product)}
+                > */}
+                   <Link to ={`/details/${product.id}`}
                   borderRadius="18px"
                   backgroundColor="#FF2153"
                   w="88px"
@@ -98,7 +107,8 @@ const ShowCards = ({ product }) => {
                   onClick={() => handleCardClick(product)}
                 >
                   {product.price}
-                </Button>
+                {/* </Button> */}
+                </Link>
               </Stack>
             </Box>
             
