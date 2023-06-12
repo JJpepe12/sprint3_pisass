@@ -59,6 +59,8 @@ useEffect(() => {
 })
 
 const pizzaData = useContext(PizzaContext);
+
+
   return (
     <ChakraProvider>
       <Box backgroundColor= "#fadce7" >
