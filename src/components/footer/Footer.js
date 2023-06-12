@@ -17,8 +17,8 @@ const Footer = () => {
   };
 
   const handleBookClick = () => {
-    setActivePage("home");
-    navigate("/home")
+    setActivePage("login");
+    navigate("/login")
   };
 
   const handlePurchasesClick = () => {

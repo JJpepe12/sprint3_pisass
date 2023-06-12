@@ -7,6 +7,7 @@ import { UserProvider } from "../context/UserProvider";
 import Login from "../pages/login/login";
 import Purchases from "../pages/purchases/Purchases";
 import Order from "../pages/order/Order";
+import { NotFound } from "../components/notFound/NotFound";
 
 
 
@@ -23,6 +24,7 @@ const AppRouter = () => {
             <Route path="purchases" element={<Purchases />} />
             <Route path="order" element={<Order />} />
           </Route>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
         </UserProvider>
       </BrowserRouter>
