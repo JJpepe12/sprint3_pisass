@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InfoUsuario from '../infousuario/InfoUsuario';
-import {  Card,  Stack,  Box, GlobalStyle } from '@chakra-ui/react';
+import {  Card,  Stack,  Box } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

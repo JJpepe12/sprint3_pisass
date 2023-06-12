@@ -35,7 +35,7 @@ const ShowCards = ({ product }) => {
         height="8px"
         marginX="5px"
         position="absolute"
-        top="-30px"
+        top="-40px"
       ></Box>
     ),
   };
@@ -67,7 +67,7 @@ const ShowCards = ({ product }) => {
                 position="absolute"
                 display="flex"
                 justifyContent="space-between"
-                top="90px"
+                top="80px"
                 gap="1.5rem"
                 padding="40px"
               >
@@ -113,7 +113,7 @@ const ShowCards = ({ product }) => {
                 position="absolute"
                 display="flex"
                 justifyContent="space-between"
-                top="90px"
+                top="80px"
                 gap="1.5rem"
                 padding="40px"
               >
@@ -160,7 +160,7 @@ const ShowCards = ({ product }) => {
                 position="absolute"
                 display="flex"
                 justifyContent="space-between"
-                top="90px"
+                top="80px"
                 gap="1.5rem"
                 padding="40px"
               >

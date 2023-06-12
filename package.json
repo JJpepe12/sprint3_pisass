@@ -19,6 +19,7 @@
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@remotion/gif": "^3.3.100",
     "axios": "^1.4.0",
     "babel-loader": "^9.1.2",
     "components": "^0.1.0",

@@ -18,13 +18,19 @@ const Footer = () => {
 
   const handleBookClick = () => {
     setActivePage("home");
-    navigate ("/home")
+    navigate("/home")
   };
+
+  const handlePurchasesClick = () => {
+    setActivePage("purchases");
+    navigate("/purchases");
+  };
+
 
   return (
     <ChakraProvider>
       <Box width="100%" height="70px" marginTop="20px">
-        <Image src={FooterFondo} alt="FooterFondo" width="100%"  />
+        <Image src={FooterFondo} alt="FooterFondo" width="100%" />
         <Flex
           alignItems="center"
           justifyContent="space-between"
@@ -54,7 +60,7 @@ const Footer = () => {
                 color: activePage === "home" ? "#FF2153" : "gray",
                 fontWeight: "bold",
                 color:
-                location.pathname === "/home" ? "#FF2153" : "gray",
+                  location.pathname === "/home" ? "#FF2153" : "gray",
               }}
             >
               Home
@@ -76,10 +82,19 @@ const Footer = () => {
               left="50%"
               transform="translate(-50%, -50%)"
             >
-              <RiShoppingBasket2Line
-                fontSize="1.8rem"
-                style={{ filter: "grayscale(100%)", fill: "#FF2153" }}
-              />
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                _hover={{ cursor: "pointer" }}
+                onClick={handlePurchasesClick}
+              >
+                <RiShoppingBasket2Line
+                  fontSize="1.8rem"
+                  color="gray"
+                />
+
+              </Stack>
             </Box>
           </Box>
 
@@ -104,7 +119,7 @@ const Footer = () => {
                 color: activePage === "buscar" ? "#FF2153" : "gray",
                 fontWeight: "bold",
                 color:
-                location.pathname === "/search" ? "#FF2153" : "gray",
+                  location.pathname === "/search" ? "#FF2153" : "gray",
               }}
             >
               Buscar
