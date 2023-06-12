@@ -30,7 +30,7 @@ a{
 
 
 
-body{
-    background-color: #fadce7;
+background-color: #fadce7body{
+    ;
 }
 `;
