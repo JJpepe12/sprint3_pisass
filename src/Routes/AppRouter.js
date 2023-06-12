@@ -5,6 +5,7 @@ import Layout from "../components/layout/Layout";
 import Home from "../pages/home/Home";
 import { UserProvider } from "../context/UserProvider";
 import Login from "../pages/login/login";
+import { PizzasProvider } from "../context/PizzasProvider";
 import Purchases from "../pages/purchases/Purchases";
 import Order from "../pages/order/Order";
 import { NotFound } from "../components/notFound/NotFound";
@@ -15,6 +16,7 @@ const AppRouter = () => {
   return (
     <>
       <BrowserRouter>
+      <PizzasProvider>
       <UserProvider>
         <Routes>
         <Route path={"/"} element={<Layout />}>
@@ -27,6 +29,7 @@ const AppRouter = () => {
           <Route path="*" element={<NotFound/>}/>
         </Routes>
         </UserProvider>
+        </PizzasProvider>
       </BrowserRouter>
     </>
   );

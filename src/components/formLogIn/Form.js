@@ -107,7 +107,7 @@ const initialValues = {
                         <Stack spacing={4} alignItems="center">
                             <InputGroup display="flex" alignItems="center" >
                                 <Input  display="flex" alignItems="center" variant='flushed'  type="text" name="username" color="white"  placeholder='Usuario' _placeholder={{ opacity: 1, color: 'white', fontSize:"small" }}{...formik.getFieldProps('username')}  onChange={formik.handleChange} value={formik.values.username}/>
-                                <FormErrorMessage position="absolute">{formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}</FormErrorMessage>
+                                <FormErrorMessage>{formik.touched.username && formik.errors.username &&(<div>{formik.errors.username}</div>) }</FormErrorMessage>
                                 <InputLeftElement className="Input_Img" top= "7px" >
                                     <AiOutlineUser color="white"/>
                                 </InputLeftElement>
@@ -117,8 +117,8 @@ const initialValues = {
                                 <InputLeftElement pointerEvents='none' top= "7px">
                                     <UnlockIcon  color="white" />
                                 </InputLeftElement>
-                                <Input  display="flex" alignItems="center" variant='flushed'  type="password" name="password" color="white"placeholder="Contraseña" _placeholder={{ opacity: 1, color: 'white', fontSize:"small" }}{...formik.getFieldProps('password')}/>
-                                <FormErrorMessage position="absolute">{formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}</FormErrorMessage>
+                                <Input display="flex" alignItems="center" variant='flushed'  type="password" name="password" color="white"placeholder="Contraseña" _placeholder={{ opacity: 1, color: 'white', fontSize:"small" }}{...formik.getFieldProps('password')}/>
+                                <FormErrorMessage>{formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}</FormErrorMessage>
                             </InputGroup>
                         </Stack>
                         <Button  width='90%' size='lg' mt={7} colorScheme='gray' variant='solid' type="submit" disabled={formik.isSubmitting}>
