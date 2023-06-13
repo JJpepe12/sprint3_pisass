@@ -18,13 +18,12 @@ import {
     InputLeftElement
 } from '@chakra-ui/react';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import React, { useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
+import React, { useEffect, useState, useContext } from "react";
 import Swal from 'sweetalert2';
-
-
+import { CartContext } from "../../context/CartProvider";
 const CardPurchases = () => {
     const validationSchema = Yup.object().shape({
       fullName: Yup.string().required('El Nombre Completo es obligatorio'),
@@ -81,9 +80,12 @@ const CardPurchases = () => {
         setSubmitting(false);
       }
     });
-
+    const cartContext = useContext(CartContext);
+    const { unidsPizza, pizzaSelected } = cartContext;
+   
     return (
         <ChakraProvider>
+             <p>Cantidad de pizzas: {unidsPizza}</p>
             <Box backgroundColor="#fadce7" alignItems="center" justifyContent="center" paddingLeft="35px" maxW="375px">
                 <Stack direction="row" align="center" marginBottom="1rem" backgroundColor="#fadce7" width="%" paddingTop="20px" fontWeight="bold">
                     <Icon as={ChevronLeftIcon} boxSize={5} color="#FF2153" />
@@ -98,7 +100,7 @@ const CardPurchases = () => {
                         <CardBody padding="0" paddingLeft="15px" justifyContent="space-between" display="flex" flexDirection="column" >
                             <Heading size="xs" color="gray">Master Super CSS Pizza</Heading>
                             <Flex justifyContent="space-between">
-                                <Text py="2" fontWeight="bold">x2</Text>
+                                <Text py="2" fontWeight="bold">x{unidsPizza}</Text>
                                 <Text py="2" fontWeight="bold">$80,000</Text>
                             </Flex>
                         </CardBody>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { Card, Box, HStack, Input, Button, useNumberInput, Stack, Image, CardBody } from '@chakra-ui/react';
 import { get } from '../../services/usuarioServices'
 import DetailsPizzas from "../../components/detailsPizzas/DetailsPizzas";
@@ -6,8 +6,9 @@ import { RiShoppingBasket2Line } from "react-icons/ri";
 import { ChakraProvider } from "@chakra-ui/provider";
 import { Comments, Feedback, Avatar, Text, Stars, StarIcon } from "./StylesDetails";
 import Avatar1 from '../../assets/img/avatar_paola.jpg'
-import { useParams } from "react-router";
+import { useNavigate, useParams } from 'react-router-dom'
 import { PizzaContext } from "../../context/PizzasProvider";
+import { CartContext } from "../../context/CartProvider";
 import ShowCards from "../../components/showCards/ShowCards";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -47,56 +48,29 @@ const Details = () => {
       ></Box>
     ),
   };
-  // const [products, setProducts] = useState([]);
-  // const [descriptions, setDescription] = useState([]);
-  // // const [comments, setComments] = useState([]);
-
-  // const getProducts = async() => {
-  //     const getproducts = await get('products');
-  //     setProducts(getproducts);
-  // }
-
-  // const getDescription = async() => {
-  //     const getdescription = await get('products');
-  //     setDescription(getdescription);
-  // }
-  // useEffect(() => {
-  //     getProducts();
-  //     getDescription();
-  // }, []);
-
-  // const getComments = async() => {
-  //     const getcomments = await get('products');
-  //     setComments(getcomments);
-  // }
-  // useEffect(() => {
-  //     getComments();
-  // })
 
   const [infoPiza, setInfoPiza] = useState(null);
-
+  // contexto de las pizzas
   const pizzaData = useContext(PizzaContext);
   console.log(pizzaData);
+  // contexto del carrito
+  const { unidsPizza, setUnidsPizza } = useContext(CartContext);
+  // const [inputValue, setInputValue] = useState(unidsPizza);
 
+  
   // Hook de efecto para traer la info de la pizza
   useEffect(() => {
     const getInfoPizza = JSON.parse(sessionStorage.getItem("infoPiza"));
     setInfoPiza(getInfoPizza || {});
-  }, []);
+  },[]);
 
   const { pizzaname, descriptions, img, comments, price, img2, img3 } = infoPiza ?? {}
-
+ // Hook de efecto para ruta dinámica 
   let { pizzaid } = useParams()
 
-  const pizzaSelected = pizzaData
+  let pizzaSelected = pizzaData
     ? pizzaData.find((product) => product.id === pizzaid) : [];
   console.log(pizzaSelected);
-
-  // pizzaSelected.pizzaname
-  // pizzaSelected.descriptions
-  // pizzaSelected.img
-  // pizzaSelected.comments
-  // pizzaSelected.price
 
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
@@ -109,7 +83,27 @@ const Details = () => {
   const inc = getIncrementButtonProps()
   const dec = getDecrementButtonProps()
   const input = getInputProps()
+  const pizzaUnids= input.value
+  console.log(pizzaUnids);
 
+
+  // Hook de navegación para direccionar a detalles de la pizza
+  const navigate = useNavigate();
+  const goPurchase = () => {
+    navigate(`/purchases`)
+  }
+
+  // const handlePayButtonClick = () => {
+  // setUnidsPizza(pizzaUnids);
+  //   console.log("Valor de unidsPizza en el contexto:", unidsPizza);
+  // };
+  const handlePayButtonClick = () => {
+    const pizzaUnids = input.value; // Obtener el valor actualizado aquí
+    setUnidsPizza(() => pizzaUnids); // Usar una función de actualización
+    console.log("Valor de unidsPizza en el contexto:", pizzaUnids); // Mostrar el valor actualizado
+    Swal.fire(`Pizza seleccionada: ${pizzaname} - Unidades: ${pizzaUnids}`);
+    navigate(`/purchases`);
+  };
   return (
     <ChakraProvider>
       <Card maxW="sm" bottom="-10px" padding="30">
@@ -238,24 +232,23 @@ const Details = () => {
       </Comments>
 
       <Box display="flex" alignItems="center" justifyContent="space-evenly" color="white" p="10px">
-        <HStack marginLeft="15px">
-          <Button {...dec}>-</Button>
-          <Input htmlSize={5} width='auto' bg="#ff2153" textAlign="center" {...input} />
-          <Button {...inc}>+</Button>
-        </HStack>
-        <Button>
-          <RiShoppingBasket2Line
-            fontSize="1.8rem"
-            style={{ backgroundColor: "#ff2153", fill: "white" }}
-          />
-        </Button>
-        <Button mr="15px" fontSize="1rem" width={50}
-          _hover={{ background: "white", color: "black", }}
-        >
-          Pagar
-        </Button>
-      </Box>
-
+                    <HStack marginLeft="15px">
+                        <Button {...dec}>-</Button>
+                        <Input htmlSize={5} width='auto' bg="#ff2153" textAlign="center" {...input} />
+                        <Button {...inc}>+</Button>
+                    </HStack>
+                    <Button>
+                    <RiShoppingBasket2Line
+                        fontSize="1.8rem"
+                        style={{ backgroundColor:"#ff2153", fill: "white" }}
+                    />
+                    </Button>
+                    <Button mr="15px" fontSize="1rem" width={50}
+                        _hover={{background: "white", color: "black",}}
+                        onClick={handlePayButtonClick} >
+                    Pagar
+                    </Button>
+                </Box>
     </ChakraProvider>
   );
 };
