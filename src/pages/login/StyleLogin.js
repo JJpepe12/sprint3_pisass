@@ -75,6 +75,7 @@ export const PizzaHome = styled.div`
       font-size: 15px;
       position:absolute;
       top:660px;
+      cursor: pointer;
     }
   
 `;

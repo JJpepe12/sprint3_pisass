@@ -13,7 +13,6 @@ import Details from "../pages/details/Details";
 import NewUsers from "../pages/newUsers/NewUsers";
 
 
-
 const AppRouter = () => {
   return (
     <>
@@ -27,7 +26,7 @@ const AppRouter = () => {
             <Route path="search" element={<Search />} />
             <Route path="purchases" element={<Purchases />} />
             <Route path="order" element={<Order />} />
-            <Route path="details" element={<Details />} />
+            <Route path="details/:pizzaid" element={<Details />} />
             <Route path="new" element={<NewUsers />} />
           </Route>
           <Route path="*" element={<NotFound/>}/>

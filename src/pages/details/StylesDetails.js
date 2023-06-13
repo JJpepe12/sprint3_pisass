@@ -2,11 +2,8 @@ import styled from "styled-components";
 
 export const Comments = styled.section`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100vw;
-    /* justify-content: center;
-    align-items: center;
-    align-content: center; */
     flex-wrap: wrap;
     padding: 8%;
     gap: 30px;
@@ -14,6 +11,11 @@ export const Comments = styled.section`
     color: white;
     border-radius: 0 0 10% 10%;
     h1 {
+        font-weight: 700;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    h4 {
         font-weight: 700;
         font-size: 1.1rem;
     }
@@ -37,7 +39,7 @@ export const Avatar = styled.img`
 export const Stars= styled.div`
     display: flex;
     align-items: flex-end;
-    margin-left: -110px;
+    margin-left: -125px;
 `;
 
 export const StarIcon = styled.span`

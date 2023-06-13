@@ -45,6 +45,7 @@ const ShowCards = ({ product }) => {
   const handleCardClick = (product) => {
     sessionStorage.setItem('infoPiza', JSON.stringify(product));
     Swal.fire(`Pizza seleccionada: ${product.pizzaname} - Precio: ${product.price}`);
+    navigate(`/details/${product.id}`);
     setSelectedProduct(product);
 
   };
