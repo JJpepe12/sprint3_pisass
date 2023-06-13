@@ -11,6 +11,7 @@ import Order from "../pages/order/Order";
 import { NotFound } from "../components/notFound/NotFound";
 import Details from "../pages/details/Details";
 import NewUsers from "../pages/newUsers/NewUsers";
+import { CartProvider } from "../context/CartProvider";
 
 
 
@@ -18,6 +19,7 @@ const AppRouter = () => {
   return (
     <>
       <BrowserRouter>
+      <CartProvider>
       <PizzasProvider>
       <UserProvider>
         <Routes>
@@ -27,13 +29,14 @@ const AppRouter = () => {
             <Route path="search" element={<Search />} />
             <Route path="purchases" element={<Purchases />} />
             <Route path="order" element={<Order />} />
-            <Route path="details" element={<Details />} />
+            <Route path="details/:pizzaid" element={<Details />} />
             <Route path="new" element={<NewUsers />} />
           </Route>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
         </UserProvider>
         </PizzasProvider>
+        </CartProvider>
       </BrowserRouter>
     </>
   );

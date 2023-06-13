@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { Button, Card, CardBody, Image, Stack, Text, Box, Link } from '@chakra-ui/react';
+import {  Card, CardBody, Image, Stack, Text, Box, Link } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -41,10 +41,12 @@ const ShowCards = ({ product }) => {
     ),
   };
 
+  
   const [selectedProduct, setSelectedProduct] = useState(null);
   const handleCardClick = (product) => {
     sessionStorage.setItem('infoPiza', JSON.stringify(product));
     Swal.fire(`Pizza seleccionada: ${product.pizzaname} - Precio: ${product.price}`);
+    navigate(`/details/${product.id}`);
     setSelectedProduct(product);
 
   };
@@ -52,7 +54,7 @@ const ShowCards = ({ product }) => {
   // Hook de navegación para direccionar a detalles de la pizza
   const navigate = useNavigate();
   const goHome = () => {
-    navigate("/home")
+    navigate(`/details/${product.id}`)
   }
   return (
     <Card maxW="sm" bottom="-10px" padding="30">
