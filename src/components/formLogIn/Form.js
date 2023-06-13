@@ -108,8 +108,8 @@ const initialValues = {
                             <InputGroup display="flex" alignItems="center" >
                                 <Input  display="flex" alignItems="center" variant='flushed'  type="text" name="username" color="white"  placeholder='Usuario' _placeholder={{ opacity: 1, color: 'white', fontSize:"small" }}{...formik.getFieldProps('username')}  onChange={formik.handleChange} value={formik.values.username}/>
                                 <FormErrorMessage>{formik.touched.username && formik.errors.username &&(<div>{formik.errors.username}</div>) }</FormErrorMessage>
-                                <InputLeftElement className="Input_Img" top= "7px" >
-                                    <AiOutlineUser color="white"/>
+                                <InputLeftElement top= "-15px" height="100px" >
+                                    <AiOutlineUser color="white" />
                                 </InputLeftElement>
                                 
                             </InputGroup>

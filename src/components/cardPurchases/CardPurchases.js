@@ -221,7 +221,7 @@ const CardPurchases = () => {
                                 <InputGroup display="flex" alignItems="center">
                                     <InputLeftElement pointerEvents='none' top="7px">
                                     </InputLeftElement>
-                                    <Input display="flex" alignItems="center" type="text" name="address" color="gray" bg="white" placeholder="Cra  # " _placeholder={{ color: 'gray', fontSize: "small" }} {...formik.getFieldProps('address')} />
+                                    <Input display="flex" alignItems="center" type="text" name="address" color="gray" bg="white" placeholder="Eje Cra #  " _placeholder={{ color: 'gray', fontSize: "small" }} {...formik.getFieldProps('address')} />
                                     <FormErrorMessage position="absolute">{formik.touched.address && formik.errors.address && <div>{formik.errors.address}</div>}</FormErrorMessage>
                                 </InputGroup>
 

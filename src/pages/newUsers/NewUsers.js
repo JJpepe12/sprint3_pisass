@@ -26,7 +26,7 @@ import { post } from '../../services/usuarioServices';
 
 const NewUsers = () => {
     const validationSchema = Yup.object().shape({
-        userName: Yup.string()
+        usser_name: Yup.string()
             .min(2, "El nombre debe contener mínimo 2 caracteres")
             .required('El nombre de usuario es obligatorio'),
         fullName: Yup.string()
@@ -40,7 +40,7 @@ const NewUsers = () => {
     const handleClick = () => setShow(!show)
 
     const initialValues = {
-        userName: '',
+        usser_name: '',
         password: '',
         fullName: '',
         avatar: '',
@@ -123,12 +123,12 @@ const NewUsers = () => {
                     <Flex overflow="wrap" flexWrap="wrap" alignContent="start" flexDirection="column">
                         <div>
                             <Stack spacing={5} alignItems="left" width="300px">
-                                <FormLabel htmlFor="userName" color="black" fontSize="small" marginBottom="-13px" width="100%" fontWeight="bold">
+                                <FormLabel htmlFor="usser_name" color="black" fontSize="small" marginBottom="-13px" width="100%" fontWeight="bold">
                                     Nombre de usuario
                                 </FormLabel>
                                 <InputGroup>
-                                    <Input display="flex" alignItems="center" type="text" color="black" bg="white" placeholder='Ingresa tu nombre de usuario' _placeholder={{ color: 'gray', fontSize: "small" }} {...formik.getFieldProps('userName')} />
-                                    <FormErrorMessage position="absolute">{formik.touched.userName && formik.errors.userName && <div>{formik.errors.userName}</div>}</FormErrorMessage>
+                                    <Input display="flex" alignItems="center" type="text" color="black" bg="white" placeholder='Ingresa tu nombre de usuario' _placeholder={{ color: 'gray', fontSize: "small" }} {...formik.getFieldProps('usser_name')} />
+                                    <FormErrorMessage position="absolute">{formik.touched.usser_name && formik.errors.usser_name && <div>{formik.errors.usser_name}</div>}</FormErrorMessage>
                                 </InputGroup>
 
                                 <FormLabel htmlFor="password" color="black" fontSize="small" marginBottom="-13px" width="100%" fontWeight="bold">
