@@ -81,7 +81,8 @@ const CardPurchases = () => {
               }
             });
           }
-        } catch (error) {
+        } 
+        catch (error) {
           // Mostrar error en caso de que ocurra un problema con la solicitud
           console.error(error);
           Swal.fire({
