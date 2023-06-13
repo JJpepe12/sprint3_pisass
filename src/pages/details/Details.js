@@ -10,6 +10,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from "../../context/CartProvider";
 
 const Details = () => {
     const settings = {
@@ -49,19 +50,23 @@ const Details = () => {
 
     const [infoPiza, setInfoPiza] = useState(null);
 
+    // contexto de pizzas
     const pizzaData = useContext(PizzaContext);
     console.log(pizzaData);
-  
+
+    // contexto del carrito
+    const { unidsPizza, setUnidsPizza } = useContext(CartContext);
+
     // Hook de efecto para traer la info de la pizza
     useEffect(() => {
       const getInfoPizza = JSON.parse(sessionStorage.getItem("infoPiza"));
       setInfoPiza(getInfoPizza || {});
     }, []);
-  
+
     const { pizzaname, descriptions, price, img, img2, img3 } = infoPiza ?? {}
-  
+
     let { pizzaid } = useParams()
-  
+
     const pizzaSelected = pizzaData
       ? pizzaData.find((product) => product.id === pizzaid) : [];
     console.log(pizzaSelected);
@@ -77,7 +82,24 @@ const Details = () => {
     const inc = getIncrementButtonProps()
     const dec = getDecrementButtonProps()
     const input = getInputProps()
+
+    const pizzaUnids= input.value
+    console.log(pizzaUnids)
+
+    // Hook de navegación para direccionar a detalles de la compra
     const navigate = useNavigate();
+    const goPurchase = () => {
+    navigate(`/purchases`)
+    }
+
+    const handlePayButtonClick = () => {
+        const pizzaUnids = input.value; // Obtener el valor actualizado aquí
+        setUnidsPizza(() => pizzaUnids); // Usar una función de actualización
+        console.log("Valor de unidsPizza en el contexto:", pizzaUnids); // Mostrar el valor actualizado
+        Swal.fire(`Pizza seleccionada: ${pizzaname} - Unidades: ${pizzaUnids}`);
+        navigate(`/purchases`);
+        };
+
 
     return (
         <ChakraProvider >
@@ -232,7 +254,8 @@ const Details = () => {
                             style={{ backgroundColor:"#ff2153", fill: "white" }}
                         />
                         </Button>
-                        <Button mr="15px" fontSize="1rem" width={50}
+                        <Button onClick={handlePayButtonClick}
+                            mr="15px" fontSize="1rem" width={50}
                             _hover={{background: "white", color: "black",}}
                             >
                         Pagar

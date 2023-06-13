@@ -21,16 +21,17 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AiOutlineUserAdd } from 'react-icons/ai';
+import { post } from '../../services/usuarioServices';
 
 
 const NewUsers = () => {
     const validationSchema = Yup.object().shape({
-        userName: Yup.string()
-        .min(2, "El nombre debe contener mínimo 2 caracteres")
-        .required('El nombre de usuario es obligatorio'),
+        usser_name: Yup.string()
+            .min(2, "El nombre debe contener mínimo 2 caracteres")
+            .required('El nombre de usuario es obligatorio'),
         fullName: Yup.string()
-        .min(2, "El nombre debe contener mínimo 2 caracteres")
-        .required('Tu nombre completo es obligatorio'),
+            .min(2, "El nombre debe contener mínimo 2 caracteres")
+            .required('Tu nombre completo es obligatorio'),
     });
 
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -39,7 +40,7 @@ const NewUsers = () => {
     const handleClick = () => setShow(!show)
 
     const initialValues = {
-        userName: '',
+        usser_name: '',
         password: '',
         fullName: '',
         avatar: '',
@@ -48,30 +49,55 @@ const NewUsers = () => {
     const formik = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: (values, { setSubmitting }) => {
-        console.log("valores", values);
-        // Realizar acción con los datos del formulario
+        
+      onSubmit: async (values, { setSubmitting }) => {
+       
+            console.log("valores", values);
+            // Realizar acción con los datos del formulario
+            try {
+                // Realizar acción con los datos del formulario
 
-        // Establecer isFormSubmitted en true
-        setIsFormSubmitted(true);
+                // Enviar los datos al servidor utilizando la función update
+                const response = await post('/ussers', values);
 
-        // Mostrar la alerta y redirigir al Login
-        Swal.fire({
-            title: '¡Datos enviados!',
-            text: 'Los datos del formulario han sido enviados exitosamente.',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            navigate("/");
+                // Verificar si la solicitud fue exitosa
+                if (response) {
+
+
+
+                    // Mostrar la alerta y redirigir al Login
+                    Swal.fire({
+                        title: '¡Datos enviados!',
+                        text: 'Los datos del formulario han sido enviados exitosamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate("/");
+                        }
+                    });
+                }
             }
-        });
+            catch (error) {
+                // Mostrar error en caso de que ocurra un problema con la solicitud
+                console.error(error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Ha ocurrido un error al enviar los datos del formulario.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
 
-        // Restablecer el estado de formik
-        formik.resetForm();
+            // Establecer isFormSubmitted en true
+            setIsFormSubmitted(true);
 
-        // Marcar el envío como completo
-        setSubmitting(false);
+
+            // Restablecer el estado de formik
+            formik.resetForm();
+
+            // Marcar el envío como completo
+            setSubmitting(false);
         }
     });
 
@@ -97,12 +123,12 @@ const NewUsers = () => {
                     <Flex overflow="wrap" flexWrap="wrap" alignContent="start" flexDirection="column">
                         <div>
                             <Stack spacing={5} alignItems="left" width="300px">
-                                <FormLabel htmlFor="userName" color="black" fontSize="small" marginBottom="-13px" width="100%" fontWeight="bold">
+                                <FormLabel htmlFor="usser_name" color="black" fontSize="small" marginBottom="-13px" width="100%" fontWeight="bold">
                                     Nombre de usuario
                                 </FormLabel>
                                 <InputGroup>
-                                    <Input display="flex" alignItems="center" type="text" color="black" bg="white" placeholder='Ingresa tu nombre de usuario' _placeholder={{ color: 'gray', fontSize: "small" }} {...formik.getFieldProps('userName')} />
-                                    <FormErrorMessage position="absolute">{formik.touched.userName && formik.errors.userName && <div>{formik.errors.userName}</div>}</FormErrorMessage>
+                                    <Input display="flex" alignItems="center" type="text" color="black" bg="white" placeholder='Ingresa tu nombre de usuario' _placeholder={{ color: 'gray', fontSize: "small" }} {...formik.getFieldProps('usser_name')} />
+                                    <FormErrorMessage position="absolute">{formik.touched.usser_name && formik.errors.usser_name && <div>{formik.errors.usser_name}</div>}</FormErrorMessage>
                                 </InputGroup>
 
                                 <FormLabel htmlFor="password" color="black" fontSize="small" marginBottom="-13px" width="100%" fontWeight="bold">
@@ -113,7 +139,7 @@ const NewUsers = () => {
                                     <FormErrorMessage position="absolute">{formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}</FormErrorMessage>
                                     <InputRightElement width='5.5rem'>
                                         <Button h='1.75rem' size='sm' onClick={handleClick}>
-                                        {show ? 'Ocultar' : 'Mostrar'}
+                                            {show ? 'Ocultar' : 'Mostrar'}
                                         </Button>
                                     </InputRightElement>
                                 </InputGroup>
@@ -136,9 +162,9 @@ const NewUsers = () => {
                                 </InputGroup>
 
                             </Stack>
-                            <Button left="26%" width='50%' size='lg' mt={7} colorScheme='white' bg="#FF2153" type="submit" boxShadow="0px 9px 5px rgba(0, 0, 0, 0.2)" marginBottom="20px" 
-                            _hover={{ cursor: "pointer" }}
-                            disabled={formik.isSubmitting || isFormSubmitted}
+                            <Button left="26%" width='50%' size='lg' mt={7} colorScheme='white' bg="#FF2153" type="submit" boxShadow="0px 9px 5px rgba(0, 0, 0, 0.2)" marginBottom="20px"
+                                _hover={{ cursor: "pointer" }}
+                                disabled={formik.isSubmitting || isFormSubmitted}
                             >
                                 Regístrate
                             </Button>

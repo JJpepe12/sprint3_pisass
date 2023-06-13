@@ -43,7 +43,7 @@ export const Avatar = styled.img`
 export const Stars= styled.div`
     display: flex;
     align-items: flex-end;
-    margin-left: -125px;
+    margin-left: -5%;
 `;
 
 export const StarIcon = styled.span`

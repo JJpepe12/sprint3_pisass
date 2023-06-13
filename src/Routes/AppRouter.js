@@ -11,28 +11,31 @@ import Order from "../pages/order/Order";
 import { NotFound } from "../components/notFound/NotFound";
 import Details from "../pages/details/Details";
 import NewUsers from "../pages/newUsers/NewUsers";
+import { CartProvider } from "../context/CartProvider";
 
 
 const AppRouter = () => {
   return (
     <>
       <BrowserRouter>
-      <PizzasProvider>
-      <UserProvider>
-        <Routes>
-        <Route path={"/"} element={<Layout />}>
-          <Route index element={<Login />} />
-            <Route path="home" element={<Home />} />
-            <Route path="search" element={<Search />} />
-            <Route path="purchases" element={<Purchases />} />
-            <Route path="order" element={<Order />} />
-            <Route path="details/:pizzaid" element={<Details />} />
-            <Route path="new" element={<NewUsers />} />
-          </Route>
-          <Route path="*" element={<NotFound/>}/>
-        </Routes>
-        </UserProvider>
-        </PizzasProvider>
+      <CartProvider>
+        <PizzasProvider>
+        <UserProvider>
+          <Routes>
+          <Route path={"/"} element={<Layout />}>
+            <Route index element={<Login />} />
+              <Route path="home" element={<Home />} />
+              <Route path="search" element={<Search />} />
+              <Route path="purchases" element={<Purchases />} />
+              <Route path="order" element={<Order />} />
+              <Route path="details/:pizzaid" element={<Details />} />
+              <Route path="new" element={<NewUsers />} />
+            </Route>
+            <Route path="*" element={<NotFound/>}/>
+          </Routes>
+          </UserProvider>
+          </PizzasProvider>
+      </CartProvider>
       </BrowserRouter>
     </>
   );
