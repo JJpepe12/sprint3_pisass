@@ -23,6 +23,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { post } from '../../services/usuarioServices';
+
 
 
 const CardPurchases = () => {
@@ -55,31 +57,51 @@ const CardPurchases = () => {
     const formik = useFormik({
       initialValues,
       validationSchema,
-      onSubmit: (values, { setSubmitting }) => {
+
+
+      onSubmit: async (values, { setSubmitting }) => {
         console.log("valores", values);
-        // Realizar acción con los datos del formulario
-  
+        try {
+          // Realizar acción con los datos del formulario
+      
+          // Enviar los datos al servidor utilizando la función update
+          const response = await post('/purchase', values);
+      
+          // Verificar si la solicitud fue exitosa
+          if (response) {
+            // Mostrar la alerta y redireccionar a la página de orden
+            Swal.fire({
+              title: '¡Datos enviados!',
+              text: 'Los datos del formulario han sido enviados exitosamente.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                navigate("/order");
+              }
+            });
+          }
+        } catch (error) {
+          // Mostrar error en caso de que ocurra un problema con la solicitud
+          console.error(error);
+          Swal.fire({
+            title: 'Error',
+            text: 'Ha ocurrido un error al enviar los datos del formulario.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      
         // Establecer isFormSubmitted en true
         setIsFormSubmitted(true);
-  
-        // Mostrar la alerta y redireccionar a la página de orden
-        Swal.fire({
-          title: '¡Datos enviados!',
-          text: 'Los datos del formulario han sido enviados exitosamente.',
-          icon: 'success',
-          confirmButtonText: 'Aceptar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate("/order");
-          }
-        });
-  
+      
         // Restablecer el estado de formik
         formik.resetForm();
-  
+      
         // Marcar el envío como completo
         setSubmitting(false);
       }
+      
     });
 
     return (
