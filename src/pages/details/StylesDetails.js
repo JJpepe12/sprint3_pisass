@@ -14,10 +14,14 @@ export const Comments = styled.section`
         font-weight: 700;
         font-size: 1.5rem;
         text-align: center;
+        margin-top: -15px;
     }
     h4 {
         font-weight: 700;
         font-size: 1.1rem;
+    }
+    h6 {
+        margin-top: -15px;
     }
 `;
 

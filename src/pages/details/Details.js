@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Card, Box, HStack, Input, Button, useNumberInput, Stack, Image, CardBody } from '@chakra-ui/react';
+import { Card, Box, HStack, Input, Button, useNumberInput, Stack, Image, CardBody, Icon } from '@chakra-ui/react';
 import { RiShoppingBasket2Line } from "react-icons/ri";
 import { ChakraProvider } from "@chakra-ui/provider";
 import { Comments, Feedback, Avatar, Text, Stars, StarIcon } from "./StylesDetails";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import { PizzaContext } from "../../context/PizzasProvider";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { useNavigate } from 'react-router-dom';
 
 const Details = () => {
     const settings = {
@@ -56,7 +58,7 @@ const Details = () => {
       setInfoPiza(getInfoPizza || {});
     }, []);
   
-    const { pizzaname, descriptions, img, img2, img3 } = infoPiza ?? {}
+    const { pizzaname, descriptions, price, img, img2, img3 } = infoPiza ?? {}
   
     let { pizzaid } = useParams()
   
@@ -75,11 +77,16 @@ const Details = () => {
     const inc = getIncrementButtonProps()
     const dec = getDecrementButtonProps()
     const input = getInputProps()
+    const navigate = useNavigate();
 
     return (
         <ChakraProvider >
-            <Box bg="#ff2153">
-                <Card maxW="sm" bottom="-10px" padding="30">
+            <Box bg="#FF2153">
+                <Stack onClick={() => navigate("/search")} direction="row" align="center" paddingTop="20px" color="white" _hover={{ cursor: "pointer" }}>
+                    <Icon as={ChevronLeftIcon} boxSize={20}  />
+                    <p>Regresar a Buscar</p>
+                </Stack>
+                <Card maxW="sm" bottom="-10px" padding="12">
                     <CardBody>
                         <Slider {...settings}>
                         <div>
@@ -182,25 +189,35 @@ const Details = () => {
                         </Slider>
                     </CardBody>
                     </Card>
-                    <Comments>
-                            <h1>{pizzaname}</h1>
-                            <h4>Descripción</h4>
-                            <p>{descriptions}</p>
-                            <Feedback>
-                            {infoPiza && infoPiza.comments && (
-                                <>
-                                <Avatar src={infoPiza.comments.img} alt={infoPiza.comments.name} />
-                                <h4>{infoPiza.comments.name}</h4>
-                                <Stars>
-                                    <StarIcon>★</StarIcon>
-                                    <StarIcon>★</StarIcon>
-                                    <StarIcon>★</StarIcon>
-                                </Stars>
-                                <Text>{infoPiza.comments.comment}</Text>
-                                </>
-                            )}
-                            </Feedback>
 
+                    <Comments>
+                    <h1>{pizzaname}</h1>
+                    <Button
+                        borderRadius="18px"
+                        backgroundColor="#FF2153"
+                        w="88px"
+                        h="35px"
+                        color="white"
+                        mt={-20}
+                        >
+                        {price}
+                    </Button>
+                    <h4>Descripción</h4>
+                    <h6>{descriptions}</h6>
+                    <Feedback>
+                    {infoPiza && infoPiza.comments && (
+                        <>
+                        <Avatar src={infoPiza.comments.img} alt={infoPiza.comments.name} />
+                        <h4>{infoPiza.comments.name}</h4>
+                        <Stars>
+                            <StarIcon>★</StarIcon>
+                            <StarIcon>★</StarIcon>
+                            <StarIcon>★</StarIcon>
+                        </Stars>
+                        <Text>{infoPiza.comments.comment}</Text>
+                        </>
+                    )}
+                    </Feedback>
                     </Comments>
                 
                     <Box display="flex" alignItems="center" justifyContent="space-evenly" color="white" p="10px">
