@@ -21,7 +21,7 @@ const InfoUsuario = () => {
     <ChakraProvider>
       <Stack direction='row'padding="8" justify="space-between" marginBottom="-50px" align="center" >
         <Stack direction='column' gap= "0.5rem" >
-        <h1 style={{ fontWeight: "bold", fontSize: "28px" }}>Home</h1>
+        <h1 style={{ fontWeight: "bold", fontSize: "28px" }}>Hola</h1>
         <h3 style={{ color: "gray",  fontWeight: "bold" }}>¡Qué bueno verte, {name}!</h3>
         </Stack>
         <Stack>

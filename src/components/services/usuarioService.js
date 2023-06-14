@@ -10,3 +10,8 @@ export const get = async (endpoint) => {
     const response = await instanceAxios.get(endpoint);
     return response.data;
   };
+
+  export const post = async (endpoint, data) => {
+    const response = await instanceAxios.post(endpoint, data);
+    return response.data;
+  };

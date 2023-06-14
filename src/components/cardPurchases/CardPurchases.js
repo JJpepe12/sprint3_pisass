@@ -18,10 +18,10 @@ import {
     InputLeftElement
 } from '@chakra-ui/react';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
 import { post } from '../../services/usuarioServices';
 import { CartContext } from "../../context/CartProvider";
@@ -62,12 +62,21 @@ const CardPurchases = () => {
 
 
         onSubmit: async (values, { setSubmitting }) => {
-            console.log("valores", values);
             try {
-                // Realizar acción con los datos del formulario
+                const formData = {
+                    fullName: values.fullName,
+                    creditCardNumber: values.creditCardNumber,
+                    expirationDate: values.expirationDate,
+                    cvv: values.cvv,
+                    address: values.address,
+                    pizzaInfo: infoPiza.pizzaname,
+                    price: price,
+                    totalCompra: totalCompra
+                };
 
+                
                 // Enviar los datos al servidor utilizando la función update
-                const response = await post('/purchase', values);
+                const response = await post('/purchase', formData);
 
                 // Verificar si la solicitud fue exitosa
                 if (response) {
@@ -83,6 +92,7 @@ const CardPurchases = () => {
                         }
                     });
                 }
+                console.log('Datos enviados:', formData);
             }
             catch (error) {
                 // Mostrar error en caso de que ocurra un problema con la solicitud
@@ -111,11 +121,38 @@ const CardPurchases = () => {
     // contexto de las pizzas
     const pizzaData = useContext(PizzaContext);
     console.log(pizzaData);
-    const { pizzaname, descriptions, img, comments, price, img2, img3 } = infoPiza ?? {}
 
     // contexto del carrito
   const { unidsPizza, setUnidsPizza } = useContext(CartContext);
 
+  // Hook de efecto para traer la info de la pizza
+  useEffect(() => {
+    const getInfoPizza = JSON.parse(sessionStorage.getItem("infoPiza"));
+    setInfoPiza(getInfoPizza || {});
+  },[]);
+
+ const {  price } = infoPiza ?? {}
+ // Hook de efecto para ruta dinámica 
+  let { pizzaid } = useParams()
+
+
+ let pizzaSelected = pizzaData
+    ? pizzaData.find((product) => product.id === pizzaid) : [];
+  console.log(pizzaSelected);
+const totalCompra = unidsPizza * price;
+
+const [formData, setFormData] = useState({
+    fullName: '',
+    creditCardNumber: '',
+    expirationDate: '',
+    cvv: '',
+    address: '',
+    pizzaInfo: null,
+    unidsPizza: 0,
+    price: 0,
+    totalCompra: 0
+  });
+console.log(formData);
 
     return (
         <ChakraProvider>
@@ -132,10 +169,10 @@ const CardPurchases = () => {
                     <Flex>
                         <CardBody padding="0" paddingLeft="15px" justifyContent="space-between" display="flex" flexDirection="column" >
                             <Heading size="xs" color="gray">Master Super CSS Pizza</Heading>
-                            <Flex justifyContent="space-between">
-                                <Text py="2" fontWeight="bold">x{unidsPizza}</Text>
-                                <Text py="2" fontWeight="bold" >{price} precio</Text>
-                                <Text py="2" fontWeight="bold"></Text>
+                            <Flex flexDirection="column" justifyContent="space-between">
+                                <Text fontWeight="bold">x {unidsPizza}</Text>
+                                <Text fontWeight="bold" >Unidad: ${price}</Text>
+                                <Text fontWeight="bold">Total: ${totalCompra}</Text>
 
                             </Flex>
                         </CardBody>
