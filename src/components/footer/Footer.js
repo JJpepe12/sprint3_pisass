@@ -73,7 +73,8 @@ const Footer = () => {
             h={75}
             borderRadius="50%"
             bg="white"
-            top="-53"
+            top="-45"
+            left="1.5%"
             boxShadow="0px 9px 5px rgba(0, 0, 0, 0.2)"
           >
             <Box
@@ -90,7 +91,7 @@ const Footer = () => {
                 onClick={handlePurchasesClick}
               >
                 <RiShoppingBasket2Line
-                  fontSize="1.8rem"
+                  fontSize="2rem"
                   color="gray"
                 />
 

@@ -157,10 +157,10 @@ console.log(formData);
     return (
         <ChakraProvider>
             <Box backgroundColor="#fadce7" alignItems="center" justifyContent="center" paddingLeft="35px" maxW="375px">
-                <Stack direction="row" align="center" marginBottom="1rem" backgroundColor="#fadce7" width="%" paddingTop="20px" fontWeight="bold">
+                <Stack onClick={() => navigate(`/details/:pizzaid}`)} direction="row" align="center" marginBottom="1rem" backgroundColor="#fadce7" width="%" paddingTop="20px" fontWeight="bold">
                     <Icon as={ChevronLeftIcon} boxSize={5} color="#FF2153" />
                     <Text fontWeight="bold">
-                        Carrito de compras
+                        Regresar a detalles
                     </Text>
                 </Stack>
 

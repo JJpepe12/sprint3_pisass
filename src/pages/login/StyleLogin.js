@@ -48,8 +48,8 @@ export const PizzaHome = styled.div`
       font-weight: bolder;
       text-align: center;
       position:absolute;
-      top:600px;
-      left: 100px;
+      top:620px;
+      left: 110px;
     }
 
     div {
@@ -65,7 +65,9 @@ export const PizzaHome = styled.div`
       font-weight: lighter;
       color: white;
       z-index: 5;
-      font-size: smaller;
+      font-size: smaller;      
+      position:relative;
+      top:20px;
     }
 
     div h4 {
@@ -74,7 +76,7 @@ export const PizzaHome = styled.div`
       z-index: 5;
       font-size: 15px;
       position:absolute;
-      top:660px;
+      top:690px;
       cursor: pointer;
     }
   

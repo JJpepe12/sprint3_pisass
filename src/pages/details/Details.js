@@ -76,7 +76,7 @@ const Details = () => {
         step: 1,
         defaultValue: 0,
         min: 0,
-        max: 5,
+        max: 10,
         })
     
     const inc = getIncrementButtonProps()
@@ -214,16 +214,29 @@ const Details = () => {
 
                     <Comments>
                     <h1>{pizzaname}</h1>
-                    <Button
-                        borderRadius="18px"
-                        backgroundColor="#FF2153"
-                        w="88px"
-                        h="35px"
-                        color="white"
-                        mt={-20}
-                        >
-                        {price}
-                    </Button>
+                    <div>
+                        <Button
+                            borderRadius="18px"
+                            backgroundColor="#FF2153"
+                            w="88px"
+                            h="35px"
+                            color="white"
+                            mt={-20}
+                            >
+                            {price}
+                        </Button>
+                        <Button
+                            borderRadius="18px"
+                            backgroundColor="#F1A548"
+                            w="110px"
+                            h="35px"
+                            color="white"
+                            mt={-20}
+                            ml={20}
+                            >
+                            445 Reviews
+                        </Button>
+                    </div>
                     <h4>Descripción</h4>
                     <h6>{descriptions}</h6>
                     <Feedback>

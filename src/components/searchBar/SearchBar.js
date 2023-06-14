@@ -89,7 +89,7 @@ const SearchBar = () => {
               width="90%"
               margin="auto"
               type="text"
-              placeholder="Pepperoni"
+              placeholder="Pizza de Pepperoni"
               // value={searchTerm}
               onChange={handleSearchPizzas}
             />
